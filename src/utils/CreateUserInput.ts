@@ -1,4 +1,5 @@
 import { InputType, Field } from '@nestjs/graphql';
+import { CreateUserSettingInput } from './CreateUserSettingInput';
 
 @InputType()
 export class CreateuserInput {
@@ -7,4 +8,7 @@ export class CreateuserInput {
 
   @Field({ nullable: true })
   displayName: string;
+
+  @Field(() => CreateUserSettingInput, { nullable: true })
+  userSetting: CreateUserSettingInput;
 }

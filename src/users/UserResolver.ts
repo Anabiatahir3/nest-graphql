@@ -14,14 +14,11 @@ import { mockSettingUsers } from 'src/mockSettingUsers';
 import { UserSetting } from '../graphql/models/UserSetting';
 import { CreateuserInput } from 'src/utils/CreateUserInput';
 import { UserService } from './UserService';
-import { UserSettingService } from './UserSettingService';
+import { UpdateUserInput } from 'src/utils/UpdateUserInput';
 
 @Resolver((of) => User) //of=>User is a way of telling the resolver that user is the parent
 export class UserResolver {
-  constructor(
-    private userService: UserService,
-    private userSettingService: UserSettingService,
-  ) {}
+  constructor(private userService: UserService) {}
 
   @Query((returns) => [User])
   getUser() {
@@ -40,5 +37,18 @@ export class UserResolver {
   @Mutation((returns) => User)
   createUser(@Args('createUserData') createUserData: CreateuserInput) {
     return this.userService.createUser(createUserData);
+  }
+
+  @Mutation((returns) => User)
+  deleteUser(@Args('id', { type: () => Int }) id: number) {
+    return this.userService.deleteUser(id);
+  }
+
+  @Mutation((returns) => User)
+  updateUser(
+    @Args('id', { type: () => Int }) id: number,
+    @Args('updateUser') updateUser: UpdateUserInput,
+  ) {
+    return this.userService.updateUser(id, updateUser);
   }
 }

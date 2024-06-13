@@ -4,16 +4,9 @@ import { UserService } from './UserService';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from 'src/graphql/models/User';
 import { UserSetting } from 'src/graphql/models/UserSetting';
-import { UserSettingResolver } from 'src/graphql/resolvers/UserSettingResolver';
-import { UserSettingService } from './UserSettingService';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User, UserSetting])],
-  providers: [
-    UserResolver,
-    UserService,
-    UserSettingResolver,
-    UserSettingService,
-  ],
+  providers: [UserResolver, UserService],
 })
 export class UsersModule {}

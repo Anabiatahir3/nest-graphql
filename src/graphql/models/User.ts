@@ -22,8 +22,10 @@ export class User {
   @Field({ nullable: true })
   displayName?: string;
 
-  @OneToOne(() => UserSetting)
+  @Field(() => UserSetting, { nullable: true })
+  @OneToOne(() => UserSetting, (userSetting) => userSetting.user, {
+    cascade: true,
+  })
   @JoinColumn()
-  @Field({ nullable: true })
-  settings?: UserSetting;
+  userSetting: UserSetting;
 }
