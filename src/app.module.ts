@@ -10,6 +10,7 @@ import { User } from './graphql/models/User';
 import { UserSetting } from './graphql/models/UserSetting';
 import { UsersModule } from './users/users.module';
 import { UserSettingService } from './users/UserSettingService';
+import { AppResolver } from './app.resolver';
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -29,6 +30,6 @@ import { UserSettingService } from './users/UserSettingService';
     UsersModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AppResolver],
 })
 export class AppModule {}

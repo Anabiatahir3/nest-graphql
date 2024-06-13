@@ -16,6 +16,7 @@ type User {
 }
 
 type Query {
+  getHello: String!
   getUser: [User!]!
   userById(id: Int!): User
 }
